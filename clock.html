@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog Clock</title>
+    <link rel="stylesheet" href="./analogclock.css">
+</head>
+
+<body class="h-screen bg-gray-900">
+    <div class="h-full grid place-items-center">
+        <div
+            class="clock w-[250px] aspect-square bg-gradient-to-tr from-blue-500 rounded-full ring-8 ring-yellow-400 relative before:aspect-square before:p-2 before:absolute before:bg-blue-950 before:top-1/2 before:left-1/2  before:-translate-x-1/2  before:-translate-y-1/2 before:rounded-full before:z-10">
+            <div
+                class="hour absolute w-1/3 h-[6px] bg-red-500 top-1/2 left-1/2 -translate-y-1/2  origin-left rounded-lg">
+            </div>
+            <div
+                class="minute absolute w-[42%] h-[4px] bg-white top-1/2 left-1/2 -translate-y-1/2  origin-left rounded-lg">
+            </div>
+            <div
+                class="second absolute w-[46%] h-[2px] bg-red-500 top-1/2 left-1/2 -translate-y-1/2  origin-left rounded-lg">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function move(){
+            let date=new Date();
+
+            // for second
+            let sec=date.getSeconds();
+            let secRotate=6*sec;
+            const second = document.querySelector(".second");
+           
+            second.style.transform=`rotate(${secRotate-90}deg)`;  
+            
+            // for minutes
+            let min=date.getMinutes();
+            let minRotate=min*6;
+            const minute=document.querySelector(".minute");
+            minute.style.transform=`rotate(${minRotate-90}deg)`;
+
+
+            //for hour
+            let h=date.getHours();
+            let hourRotate=30*h;
+            const hour=document.querySelector(".hour");
+            hour.style.transform=`rotate(${hourRotate-90}deg)`;
+        }
+
+        // updating hand every second
+        setInterval(move,1000);
+    </script>
+</body>
+
+</html>
